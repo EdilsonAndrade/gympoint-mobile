@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   Container,
   Logo,
@@ -8,7 +10,10 @@ import {
 } from './styles';
 import logo from '../../assets/logo.png';
 
-export default function Signin() {
+export default function Signin({navigation}) {
+  function handleLogin() {
+    navigation.navigate('Checkin');
+  }
   return (
     <Container>
       <Logo source={logo} />
@@ -18,9 +23,14 @@ export default function Signin() {
         returnKeyType="send"
         keyboardType="numeric"
       />
-      <LoginButton>
+      <LoginButton onPress={handleLogin}>
         <LoginButtonText>Entrar no sistema</LoginButtonText>
       </LoginButton>
     </Container>
   );
 }
+
+Signin.propTypes = {
+  navigation: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+    .isRequired,
+};
