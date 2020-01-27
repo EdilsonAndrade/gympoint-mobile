@@ -1,9 +1,12 @@
 import styled from 'styled-components/native';
 import {RectButton} from 'react-native-gesture-handler';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
-  justify-content: center;
+  align-items: center;
+  margin-top:20px;
+  padding:20px;
+
 `;
 
 export const ButtonNewCheckin = styled(RectButton)`
@@ -11,6 +14,7 @@ export const ButtonNewCheckin = styled(RectButton)`
   border-radius: 4px;
   justify-content: center;
   align-items: center;
+  align-self:stretch;
 `;
 
 export const ButtonNewCheckinText = styled.Text`

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {RectButton} from 'react-native-gesture-handler';
-
+import {ActivityIndicator} from 'react-native';
 export const Container = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
@@ -37,4 +37,12 @@ export const LoginButtonText = styled.Text`
   padding: 16px;
   font-size: 16px;
   font-weight: bold;
+`;
+
+export const Loading = styled(ActivityIndicator) `
+ color: #fff;
+text-align: center;
+padding: 16px;
+font-size: 16px;
+font-weight: bold;
 `;

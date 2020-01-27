@@ -1,15 +1,14 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {useSelector} from 'react-redux';
+import createRouter from './routes';
 import 'react-native-gesture-handler';
-import Routes from './routes';
 
-const App = () => {
-  return (
-    <>
-      <StatusBar barStyle="light-content" backgroundColor="#fff" />
-      <Routes />
-    </>
-  );
-};
+const App= () =>{
+
+  const isLogged = useSelector(state=>state.auth.isLogged);
+
+  const Routes = createRouter(isLogged);
+  return <Routes />;
+}
 
 export default App;
