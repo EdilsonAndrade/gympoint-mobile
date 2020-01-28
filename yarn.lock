@@ -2117,6 +2117,11 @@ data-urls@^1.0.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
+date-fns@^2.0.0-beta.5:
+  version "2.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-beta.5.tgz#90885db3772802d55519cd12acd49de56aca1059"
+  integrity sha512-GS5yi964NDFNoja9yOdWFj9T97T67yLrUeJZgddHaVfc/6tHWtX7RXocuubmZkNzrZUZ9BqBOW7jTR5OoWjJ1w==
+
 dayjs@^1.8.15:
   version "1.8.19"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.19.tgz#5117dc390d8f8e586d53891dbff3fa308f51abfe"
@@ -2835,6 +2840,11 @@ fast-levenshtein@~2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
+
+fast-sort@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/fast-sort/-/fast-sort-2.0.1.tgz#71d932d2de380d0d6ca449fdc5dbdefdc437e84a"
+  integrity sha512-61gSQXW5KavRau+RBlQbpD3q+tUyrHSKiU/wob4RP58s99uIpydII6MaRpA+t6Td6/WhvU0lgL8UoMPKKv4xYg==
 
 fb-watchman@^2.0.0:
   version "2.0.1"

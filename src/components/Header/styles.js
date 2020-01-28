@@ -2,11 +2,14 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   align-items:center;
+  background:#fff;
+  padding: 20px;
 `;
 
 export const ImageContent = styled.Image`
-  height: 91px;
-  width: 150px;
+  width:180px;
+  height:30px;
+
 `;
 
 export const HeaderText = styled.Text `

@@ -1,6 +1,7 @@
-export const logginSuccess = () => {
+export const logginSuccess = (studentId) => {
   return {
     type: '@auth/LOGGIN_SUCCESS',
+    payload: {studentId}
   }
 }
 

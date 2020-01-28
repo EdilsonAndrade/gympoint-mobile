@@ -1,35 +1,59 @@
 import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Signin from './pages/Signin';
 import Checkin from './pages/Checkin';
 import Dashboard from '~/pages/Order/Dashboard';
 import Answer from '~/pages/Order/Answer';
 import Question from '~/pages/Order/Question';
-
 export default (isLogged = false) =>
+
+
   createAppContainer(
     createSwitchNavigator(
       {
         Signin,
         Logged: createBottomTabNavigator(
           {
-            Checkin,
+            Checkin:createStackNavigator({
+              Checkin
+            },
+            {
+              navigationOptions:{
+                tabBarIcon: ({tintColor}) => (
+                  <Icon name="edit-location" size={30} color={tintColor} />
+                ),
+                tabBarLabel: "Check-ins"
+              }
+            }),
             Order: createSwitchNavigator(
               {
-                Dashboard,
-                Answer,
-                Question,
+                Dash: createStackNavigator({
+                  Dashboard,
+                  Answer,
+                  Question
+                },{
+                  navigationOptions:{
+                    tabBarIcon: ({tintColor}) => (
+                      <Icon name="edit-location" size={30} color={tintColor} />
+                    ),
+                    tabBarLabel: "Check-ins"
+                  }
+                }),
+
               },
               {
                 navigationOptions: {
+
                   tabBarLabel: 'Pedir ajuda',
                   tabBarIcon: ({tintColor}) => (
                     <Icon name="live-help" size={30} color={tintColor} />
                   ),
                   activeTintColor: '#ee4d64',
                 },
+
               }
             ),
           },

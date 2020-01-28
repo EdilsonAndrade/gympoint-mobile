@@ -32,7 +32,7 @@ export default function Signin({navigation}) {
 
         if(response.data && response.data.id === +studentId)
         {
-         dispatch(logginSuccess());
+         dispatch(logginSuccess(response.data.id));
         }else{
           Alert.alert('Login', 'Matrícula inválida');
           setLoading(false);
@@ -40,7 +40,6 @@ export default function Signin({navigation}) {
       }
 
     } catch (error) {
-      console.tron.warn(error.data.message);
       setLoading(false);
     }
 
