@@ -8,6 +8,7 @@ import Checkin from './pages/Checkin';
 import Dashboard from '~/pages/Order/Dashboard';
 import Answer from '~/pages/Order/Answer';
 import Question from '~/pages/Order/Question';
+import Header from '~/components/Header';
 export default (isLogged = false) =>
 
 
@@ -35,11 +36,12 @@ export default (isLogged = false) =>
                   Answer,
                   Question
                 },{
-                  navigationOptions:{
+                  defaultNavigationOptions:{
                     tabBarIcon: ({tintColor}) => (
                       <Icon name="edit-location" size={30} color={tintColor} />
                     ),
-                    tabBarLabel: "Check-ins"
+                    tabBarLabel: "Check-ins",
+                    header: () => <Header />
                   }
                 }),
 
