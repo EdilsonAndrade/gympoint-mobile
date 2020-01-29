@@ -1,32 +1,58 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import pt from 'date-fns/locale/pt';
+import { formatRelative, parseISO } from 'date-fns';
+import {withNavigationFocus} from 'react-navigation';
 import api from '~/services/api';
+import sort from 'fast-sort';
 import {
-  Container, ButtonNewCheckin,
-  ButtonNewCheckinText,
+  Container, ButtonNewQuestion,
+  ButtonNewQuestionText,
   Answers, AnswerContainer,
-  AnswerOrNotText,
-  AnswerinTime
+  AnswerOrNotText, AnswerinTime, TopContainer, MyQuestion, IconCheck, IconContent
 }
   from './styles';
 
-export default function Dashboard() {
+function Dashboard({ navigation, isFocused }) {
   const [answers, setAnswers] = useState([]);
 
   const userId = useSelector(state => state.auth.userId);
+  async function loadOrder() {
+    const response = await api.get(`students/${userId}/help-orders`);
+
+    if (response.data) {
+      var orderedData = sort(response.data).desc(order=>order.createdAt);
+      const data = orderedData.map(answer=>({
+        ...answer,
+        formattedDate: answer.createdAt && formatRelative(parseISO(answer.createdAt), new Date(), {locale:pt})
+      }))
+      setAnswers(data);
+    }
+  }
+  useEffect(() => {
+
+    loadOrder();
+  }, [isFocused])
   return (
     <Container>
-      <ButtonNewCheckin >
-        <ButtonNewCheckinText>Novo pedido de auxílio</ButtonNewCheckinText>
-      </ButtonNewCheckin>
+      <ButtonNewQuestion onPress={() => navigation.navigate('Question')} >
+        <ButtonNewQuestionText>Novo pedido de auxílio</ButtonNewQuestionText>
+      </ButtonNewQuestion>
 
       <Answers
         data={answers}
         keyExtractor={item => String(item.id)}
-        renderItem={({ item: answers }) => (
-          <AnswerContainer key={answers.id}>
+        renderItem={({ item: answer }) => (
+          <AnswerContainer disabled={!answer.answer} onPress={()=>navigation.navigate('Answer',{answer})}  key={answer.id}>
+            <TopContainer >
+              <IconContent>
+                <IconCheck name="check-circle" answered={answer.answer} size={20} color="#666" />
+                <AnswerOrNotText>{answer.answerAt !== null ? 'Respondida' : 'Sem resposta'}</AnswerOrNotText>
+              </IconContent>
 
+        <AnswerinTime>{answer.formattedDate}</AnswerinTime>
+            </TopContainer>
+            <MyQuestion>{answer.question}</MyQuestion>
           </AnswerContainer>
 
         )} />
@@ -34,3 +60,4 @@ export default function Dashboard() {
   );
 
 }
+export default withNavigationFocus(Dashboard);

@@ -14,6 +14,7 @@ export default function Checkin() {
 
   const checkInDisable = useMemo(()=>{return (checkins.length >=5)}
   ,[checkins])
+
   async function loadCheckins() {
     const response = await api.get(`students/${userId}/checkins`);
 
